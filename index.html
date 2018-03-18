@@ -1,0 +1,254 @@
+ <meta charset="UTF-8"> 
+<html>
+<head>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="js/vis.min.js"></script>
+<link href="css/style.css" rel="stylesheet">
+<link href="css/vis.min.css" rel="stylesheet">
+<title>Security Advisor </title>
+</head>
+<body>
+  <div class="row">
+<div class="nav-side-menu col-sm-2">
+    <div class="brand">
+    Security Advisor 
+  </div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="index.html">
+                  <i class="fa fa-home fa-lg"></i> Home
+                  </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed">
+                  <a href="zone.html"><i class="fa fa-list fa-lg"></i> Zone Mgr</a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed">
+                  <a href="asset.html"><i class="fa fa-desktop fa-lg"></i> Asset Mgr</a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#service" class="collapsed">
+                  <a href="servers.html"><i class="fa fa-sitemap fa-lg"></i> Servers Mgr </a>
+                </li>  
+
+                <li data-toggle="collapse" data-target="#application" class="collapsed">
+                  <a href="applications.html"><i class="fa fa-code fa-lg"></i> Applicatinos Mgr</a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#vulnerbilities" class="collapsed">
+                  <a href="vulnerbilities.html"><i class="fa fa-archive fa-lg"></i> Vulnerbilities Mgr</a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#vulnerbilities" class="collapsed">
+                  <a href="news.html"><i class="fa fa-file  fa-lg"></i> News Mgr</a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#users" class="collapsed">
+                  <a href="users.html"><i class="fa fa-users fa-lg"></i> Users Mgr</a>
+                </li>
+                <li data-toggle="collapse" data-target="#users" class="collapsed">
+                  <a href="notification.html"><i class="fa fa-envelope fa-lg"></i> notification Mgr</a>
+                </li>
+            </ul>
+     </div>
+     <div class="bottom_fixed">
+                      <div class="botton">
+                         <a href="#"><i class="fa fa-user fa-lg fa-2x buttom-button" title="User Account Management" ></i></a>
+                      </div>
+                      <div class="botton">
+                         <a href="#"><i class="fa fa-cogs fa-lg fa-2x buttom-button" title="Config Your Envirotment" ></i></a>
+                      </div>
+                      <div class="botton">
+                         <a href="#" data-toggle = "modal" data-target = "#myModal"><i class="fa fa-power-off fa-lg fa-2x buttom-button" title="Log Out"></i></a>
+                      </div>
+     </div>
+</div>
+<div id="main-container" class="col-sm-7">
+
+<div id="mynetwork" style="height: 75%;border:1px solid grey;margin-bottom:1px;"></div>
+<div id="visualization"></div>
+
+<script type="text/javascript">
+
+    var nodes = [
+        {id: 0, label: "Internet Bankig \n 10.10.131.132", group: 'safe'},
+        {id: 1, label: "DB Server \n 10.10.131.135", group: 'danger'},
+        {id: 2, label: "DB Server \n 10.10.131.136", group: 'danger'},
+        {id: 3, label: "Portal \n 10.100.100.132", group: 'safe'},
+        {id: 4, label: "Mail Server \n 10.10.131.15", group: 'safe'},
+        {id: 5, label: "Active Directory \n 10.10.131.1", group: 'safe'},
+        {id: 6, label: "SSO Server \n 10.10.131.25", group: 'safe'},
+        {id: 7, label: "ERP Server \n 10.10.131.52", group: 'danger'},
+        {id: 8, label: "Asset : IB", group: 'asset'},
+        {id: 9, label: "Asset : Honeypot", group: 'asset'},
+        {id: 10, label: "Zone : DMZ", group: 'zone'},
+        {id: 11, label: "Zone : SOC", group: 'zone'},
+        {id: 12, label: "Paym,ent Gate\n 10.10.131.145", group: 'safe'},
+        {id: 13, label: "DB Server \n 10.10.131.146", group: 'safe'},
+        {id: 14, label: "Asset : PG", group: 'asset'},
+    ];
+    var edges = [
+        {from: 0, to: 8},
+        {from: 1, to: 8},
+        {from: 2, to: 8},
+        {from: 4, to: 8},
+        {from: 5, to: 8},
+        {from: 3, to: 9},
+        {from: 7, to: 9},
+        {from: 6, to: 9},
+        {from: 12, to: 14},
+        {from: 13, to: 14},
+        {from: 8, to: 10},
+        {from: 9, to: 11},
+        {from: 14, to: 10}
+    ]
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {
+        nodes: {
+            shape: 'dot',
+            size: 20,
+            font: {
+                size: 15,
+                color: '#000000'
+            },
+            borderWidth: 2
+        },
+        edges: {
+            width: 2
+        },
+        groups: {
+            danger: {
+                color: {background:'red',border:'black'}
+            },zone: {
+                color: {color:'black',background:'whitesmoke',border:'black'},
+                shape:'square'
+            },asset: {
+                color: {color:'black',background:'yellow',border:'black'},
+                shape:"triangle"
+            },
+            safe: {
+                color: 'green'
+            },
+        }
+    };
+    var network = new vis.Network(container, data, options);
+
+
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('visualization');
+
+  // Create a DataSet (allows two way data-binding)
+  var items = new vis.DataSet([
+    {id: 1, content: 'CVE-2018-0849 ', start: '2018-04-20'},
+    {id: 2, content: 'CVE-2018-2349 ', start: '2018-04-14'},
+    {id: 3, content: 'CVE-2018-5060 ', start: '2018-04-16',},
+    {id: 4, content: 'Solving Time ', start: '2018-04-16', end: '2018-04-19','className': 'red'},
+    {id: 5, content: 'CVE-2018-0848 ', start: '2018-04-25'},
+    {id: 6, content: 'CVE-2016-0159 ', start: '2018-04-27'}
+  ]);
+
+  // Configuration for the Timeline
+  var options = {};
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(container, items, options);
+
+  
+
+</script>
+
+
+</div>
+<div class="col-sm-3" style="height: 100%;overflow-y:scroll;">
+<div style="">
+<i class="fa fa-calendar"></i> 2018-03-04 >
+<i class="fa fa-clock"></i> 01:57:34 PM 
+</div>
+<h2>News</h2>
+  <div class="jumbotron well ">
+  <div class="panel">
+      <div class="panel-heading panel-primary">
+        <h3 class="panel-title">
+          Microsoft Exchnage Server
+        </h3>
+        </div>
+        <div class="panel-body">
+          Microsoft Exchange Server 2016 CU5 and Microsoft Exchange Server 2016 CU5 allow a spoofing vulnerability due to the way Outlook Web Access (OWA) validates web requests, aka "Microsoft Exchange Spoofing Vulnerability".
+          <br/><a class="" href="#">Read More</a>
+          </div>
+      </div>
+      </div>
+        <div class="jumbotron well">
+        <h3>
+          PHP Scripts Mall Slickdeals
+        </h3>
+          Cross Site Scripting (XSS) exists in PHP Scripts Mall Slickdeals / DealNews / Groupon Clone Script 3.0.2 via a User Profile Field parameter.
+          <br/><a class="" href="#">Read More</a>
+      </div>
+      <div class="jumbotron well">
+        <h3>
+          PHP Scripts Mall Alibaba
+        </h3>
+          Cross Site Scripting (XSS) exists in PHP Scripts Mall Alibaba Clone Script 1.0.2 via a profile parameter.
+          <br/><a class="" href="#">Read More</a>
+      </div>
+</div>
+</div>
+
+
+
+
+<div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog" 
+   aria-labelledby = "myModalLabel" aria-hidden = "true">
+   
+   <div class = "modal-dialog">
+      <div class = "modal-content">
+         
+         <div class = "modal-header">
+            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+                  &times;
+            </button>
+            
+            <h4 class = "modal-title" id = "myModalLabel">
+               Logout
+            </h4>
+         </div>
+         
+         <div class = "modal-body">
+            Are You Sure ?
+         </div>
+         
+         <div class = "modal-footer">
+          <div class="btn-group">
+            <button type = "button" class = "btn btn-default" data-dismiss = "modal">
+               No
+            </button>
+            
+            <button type = "button" class = "btn btn-primary">
+               Yes
+            </button>
+            </div>
+         </div>
+         
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+  
+</div><!-- /.modal -->
+
+
+</body>
+</html>

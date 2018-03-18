@@ -1,0 +1,153 @@
+ <meta charset="UTF-8"> 
+<html>
+<head>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="js/vis.min.js"></script>
+<link href="css/style.css" rel="stylesheet">
+<link href="css/vis.min.css" rel="stylesheet">
+<title>Security Advisor </title>
+</head>
+<body>
+  <div class="row">
+<div class="nav-side-menu col-sm-2">
+    <div class="brand">
+    Security Advisor 
+  </div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="index.html">
+                  <i class="fa fa-home fa-lg"></i> Home
+                  </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed">
+                  <a href="zone.html"><i class="fa fa-list fa-lg"></i> Zone Mgr</a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed">
+                  <a href="asset.html"><i class="fa fa-desktop fa-lg"></i> Asset Mgr</a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#service" class="collapsed">
+                  <a href="servers.html"><i class="fa fa-sitemap fa-lg"></i> Servers Mgr </a>
+                </li>  
+
+                <li data-toggle="collapse" data-target="#application" class="collapsed">
+                  <a href="applications.html"><i class="fa fa-code fa-lg"></i> Applicatinos Mgr</a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#vulnerbilities" class="collapsed">
+                  <a href="vulnerbilities.html"><i class="fa fa-archive fa-lg"></i> Vulnerbilities Mgr</a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#vulnerbilities" class="collapsed">
+                  <a href="news.html"><i class="fa fa-file  fa-lg"></i> News Mgr</a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#users" class="collapsed">
+                  <a href="users.html"><i class="fa fa-users fa-lg"></i> Users Mgr</a>
+                </li>
+                <li data-toggle="collapse" data-target="#users" class="collapsed">
+                  <a href="notification.html"><i class="fa fa-envelope fa-lg"></i> notification Mgr</a>
+                </li>
+            </ul>
+     </div>
+     <div class="bottom_fixed">
+                      <div class="botton">
+                         <a href="#"><i class="fa fa-user fa-lg fa-2x buttom-button" title="User Account Management" ></i></a>
+                      </div>
+                      <div class="botton">
+                         <a href="#"><i class="fa fa-cogs fa-lg fa-2x buttom-button" title="Config Your Envirotment" ></i></a>
+                      </div>
+                      <div class="botton">
+                         <a href="#"><i class="fa fa-power-off fa-lg fa-2x buttom-button" title="Log Out"></i></a>
+                      </div>
+     </div>
+</div>
+<div id="main-container" class="col-sm-7">
+<fieldset>
+  <legend>Mail Server</legend>
+  <center>
+  <table>
+    <tr>
+      <td>SMTP Address : </td>
+      <td><input placeholder="Address" class="input"></td>
+    </tr>
+    <tr>
+      <td>Username : </td>
+      <td><input placeholder="Username" class="input"></td>
+    </tr>
+    <tr>
+      <td>Password : </td>
+      <td><input type="password" placeholder="Password" class="input"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+            <td><button class="btn btn-success">Save</button></td>
+    </tr>
+  </table>
+  </center>
+</fieldset>
+<fieldset>
+  <legend>SMS Server</legend>
+    <center>
+  <table>
+    <tr>
+      <td>SMS Address : </td>
+      <td><input placeholder="Address" class="input"></td>
+    </tr>
+    <tr>
+      <td>Username : </td>
+      <td><input placeholder="Username" class="input"></td>
+    </tr>
+    <tr>
+      <td>Password : </td>
+      <td><input type="password" placeholder="Password" class="input"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+            <td><button class="btn btn-success">Save</button></td>
+    </tr>
+  </table>
+  </center>
+</fieldset>
+</div>
+<div class="col-sm-3" style="height: 100%;overflow-y:scroll;">
+<div style="">
+< Date : 2018-03-04 > < Time : 01:57:34 PM >
+</div>
+<h2>News</h2>
+  <div class="jumbotron well">
+        <h3>
+          Microsoft Exchnage Server
+        </h3>
+          Microsoft Exchange Server 2016 CU5 and Microsoft Exchange Server 2016 CU5 allow a spoofing vulnerability due to the way Outlook Web Access (OWA) validates web requests, aka "Microsoft Exchange Spoofing Vulnerability".
+          <br/><a class="" href="#">Read More</a>
+      </div>
+        <div class="jumbotron well">
+        <h3>
+          PHP Scripts Mall Slickdeals
+        </h3>
+          Cross Site Scripting (XSS) exists in PHP Scripts Mall Slickdeals / DealNews / Groupon Clone Script 3.0.2 via a User Profile Field parameter.
+          <br/><a class="" href="#">Read More</a>
+      </div>
+      <div class="jumbotron well">
+        <h3>
+          PHP Scripts Mall Alibaba
+        </h3>
+          Cross Site Scripting (XSS) exists in PHP Scripts Mall Alibaba Clone Script 1.0.2 via a profile parameter.
+          <br/><a class="" href="#">Read More</a>
+      </div>
+</div>
+</div>
+</body>
+</html>
